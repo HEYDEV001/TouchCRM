@@ -1,13 +1,15 @@
 'use client'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
+import dynamic from 'next/dynamic'
 import { ArrowRight, PlayCircle, Sparkles, Star } from 'lucide-react'
 import { CustomCursor } from '@/components/wove/cursor'
 import { Aurora } from '@/components/wove/aurora'
 import { FloatingNav } from '@/components/wove/nav'
 import { LimeCTA, GhostCTA, GlassBadge } from '@/components/wove/liquid-glass'
 import { LiveDashboard } from '@/components/wove/live-dashboard'
-import { DotBot, Reveal } from '@/components/wove/effects'
+import { Reveal } from '@/components/wove/effects'
+const DotBot = dynamic(() => import('@/components/dotbot/DotBot'), { ssr: false })
 import {
   TrustedSection, ProblemSection, FeaturesSection, AIAgentsSection, CRMSection,
   OmniSection, AutomationSection, AnalyticsSection, PricingSection,
@@ -31,7 +33,7 @@ const App = () => {
       <DotBot />
 
       {/* HERO */}
-      <section ref={heroRef} id="platform" className="relative pt-32 md:pt-40 pb-24 md:pb-32">
+      <section ref={heroRef} id="home" className="relative pt-32 md:pt-40 pb-24 md:pb-32">
         <div className="container mx-auto px-4 md:px-6 max-w-[1320px]">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
             <motion.div className="lg:col-span-6 relative" style={{ y: heroTextY, opacity: heroOpacity }}>
