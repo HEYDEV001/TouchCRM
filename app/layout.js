@@ -11,11 +11,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} dark`}>
+    <html lang="en" className={inter.variable}>
       <head>
         <script dangerouslySetInnerHTML={{__html:'window.addEventListener("error",function(e){if(e.error instanceof DOMException&&e.error.name==="DataCloneError"&&e.message&&e.message.includes("PerformanceServerTiming")){e.stopImmediatePropagation();e.preventDefault()}},true);'}} />
       </head>
-      <body className="bg-[#070707] text-white antialiased selection:bg-[#25D366]/30 selection:text-white">
+      <body className="bg-[#D7D7D7] text-black antialiased selection:bg-[#E1FE03] selection:text-black">
         <Providers>{children}</Providers>
       </body>
     </html>
