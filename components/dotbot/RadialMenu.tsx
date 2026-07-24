@@ -121,7 +121,7 @@ export default function RadialMenu({ open, items, activeId, onSelect, botSize, r
                 <span>{item.label}</span>
                 {isPrimary && <ArrowRight className="w-3.5 h-3.5" />}
                 {isActive && !isPrimary && (
-                  <span aria-hidden className="ml-1 w-1.5 h-1.5 rounded-full bg-[#E1FE03] ring-1 ring-black" />
+                  <span aria-hidden className="ml-1 w-1.5 h-1.5 rounded-full bg-[#FEF48D] ring-1 ring-black" />
                 )}
               </motion.button>
             )

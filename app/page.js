@@ -40,8 +40,8 @@ const App = () => {
               <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.15 }}>
                 <GlassBadge>
                   <span className="relative flex w-2 h-2">
-                    <span className="absolute inline-flex h-full w-full rounded-full bg-[#E1FE03] opacity-80 animate-ping" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E1FE03]" />
+                    <span className="absolute inline-flex h-full w-full rounded-full bg-[#FEF48D] opacity-80 animate-ping" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FEF48D]" />
                   </span>
                   <Sparkles className="w-3.5 h-3.5 text-black/80" />
                   AI Powered Revenue Operating System
@@ -92,14 +92,14 @@ const App = () => {
 
       <TrustedSection />
       <ProblemSection />
-      <FeaturesSection />
       <AIAgentsSection />
+      <FeaturesSection />
       <CRMSection />
       <OmniSection />
-      <AutomationSection />
       <AnalyticsSection />
-      <PricingSection />
       <TestimonialsSection />
+      <AutomationSection />
+      <PricingSection />
       <FAQSection />
       <CTASection />
       <FooterSection />

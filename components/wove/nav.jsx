@@ -33,7 +33,7 @@ export function FloatingNav() {
         <a href="#" data-magnetic data-cursor="home" className="relative flex items-center gap-2 pl-3 md:pl-4">
           <span className="w-7 h-7 rounded-full grid place-items-center"
             style={{ background: '#000', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.25)' }}>
-            <Sparkles className="w-3.5 h-3.5 text-[#E1FE03]" strokeWidth={2.5} />
+            <Sparkles className="w-3.5 h-3.5 text-[#FEF48D]" strokeWidth={2.5} />
           </span>
           <span className="font-serif-display text-[22px] leading-none text-black">Wove</span>
         </a>

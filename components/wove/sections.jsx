@@ -15,7 +15,7 @@ export function TrustedSection() {
     <section id="trusted" className="relative py-16 md:py-24">
       <div className="container mx-auto px-4 md:px-6 max-w-[1320px]">
         <Reveal>
-          <p className="text-center text-[12.5px] uppercase tracking-[0.2em] text-black/50 mb-8">Trusted by 2,400+ growth teams across 40+ countries</p>
+          <p className="text-center text-[12.5px] uppercase tracking-[0.2em] text-black/50 mb-8">Step 02 · Trusted by 2,400+ growth teams across 40+ countries</p>
         </Reveal>
         <div className="relative overflow-hidden mask-fade" style={{ maskImage: 'linear-gradient(90deg,transparent, black 12%, black 88%, transparent)', WebkitMaskImage: 'linear-gradient(90deg,transparent, black 12%, black 88%, transparent)' }}>
           <div className="flex gap-14 anim-marquee w-max">
@@ -40,7 +40,7 @@ export function ProblemSection() {
     <section id="problem" className="relative py-24 md:py-36">
       <div className="container mx-auto px-4 md:px-6 max-w-[1320px]">
         <Reveal>
-          <GlassBadge>The problem</GlassBadge>
+          <GlassBadge>Step 03 · Problem</GlassBadge>
           <h2 className="mt-6 max-w-[900px] text-[40px] leading-[1.05] md:text-[64px] md:leading-[1.03] tracking-[-0.03em] font-medium text-gradient-wove">
             Revenue teams are drowning in <span className="font-serif-display italic">tools</span>, not
             <br className="hidden md:block" /> closing deals.
@@ -99,7 +99,7 @@ export function FeaturesSection() {
         <Reveal>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
             <div>
-              <GlassBadge>Platform</GlassBadge>
+              <GlassBadge>Step 05 · Features</GlassBadge>
               <h2 className="mt-5 text-[40px] leading-[1.05] md:text-[64px] md:leading-[1.03] tracking-[-0.03em] font-medium text-gradient-wove max-w-[820px]">
                 One platform. <span className="font-serif-display italic">Seven</span> systems. Zero silos.
               </h2>
@@ -110,7 +110,7 @@ export function FeaturesSection() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           {feats.map((f, i) => {
             const Icon = f.icon
-            const iconBg = f.color === 'lime' ? 'bg-[#E1FE03]' : 'bg-[#97BAFF]'
+            const iconBg = f.color === 'lime' ? 'bg-[#FEF48D]' : 'bg-[#97BAFF]'
             return (
               <Reveal key={f.title} delay={i * 0.06}>
                 <TiltCard className="p-7 h-full">
@@ -133,9 +133,9 @@ export function FeaturesSection() {
 /* ---------------- 5. AI Agents ---------------- */
 export function AIAgentsSection() {
   const agents = [
-    { name: 'Atlas', role: 'SDR Agent', task: 'Qualifying 428 inbound leads', color: '#E1FE03' },
+    { name: 'Atlas', role: 'SDR Agent', task: 'Qualifying 428 inbound leads', color: '#FEF48D' },
     { name: 'Nova', role: 'Success Agent', task: 'Onboarding 12 new accounts', color: '#97BAFF' },
-    { name: 'Orion', role: 'RevOps Agent', task: 'Cleaning duplicate records', color: '#E1FE03' },
+    { name: 'Orion', role: 'RevOps Agent', task: 'Cleaning duplicate records', color: '#FEF48D' },
     { name: 'Vega', role: 'Marketing Agent', task: 'Running 3 A/B campaigns', color: '#97BAFF' },
   ]
   return (
@@ -144,7 +144,7 @@ export function AIAgentsSection() {
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <div className="lg:col-span-5">
             <Reveal>
-              <GlassBadge><Sparkles className="w-3.5 h-3.5" /> AI Agents</GlassBadge>
+              <GlassBadge><Sparkles className="w-3.5 h-3.5" /> Step 04 · Solution</GlassBadge>
               <h2 className="mt-6 text-[40px] leading-[1.05] md:text-[56px] md:leading-[1.03] tracking-[-0.03em] font-medium text-gradient-wove">
                 A team of <span className="font-serif-display italic">agents</span> that never sleep.
               </h2>
@@ -160,7 +160,7 @@ export function AIAgentsSection() {
               <GlassCard className="p-6 md:p-8">
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-[#E1FE03] animate-pulse" />
+                    <div className="w-2 h-2 rounded-full bg-[#FEF48D] animate-pulse" />
                     <span className="text-[12.5px] text-black/70">4 agents working · last update 2s ago</span>
                   </div>
                   <GlassBadge>Live</GlassBadge>
@@ -245,11 +245,11 @@ export function CRMSection() {
 /* ---------------- 7. Omnichannel ---------------- */
 export function OmniSection() {
   const channels = [
-    { icon: MessageCircle, name: 'WhatsApp', volume: '128K', color: '#E1FE03' },
+    { icon: MessageCircle, name: 'WhatsApp', volume: '128K', color: '#FEF48D' },
     { icon: Mail, name: 'Email', volume: '82K', color: '#97BAFF' },
-    { icon: Instagram, name: 'Instagram', volume: '34K', color: '#E1FE03' },
+    { icon: Instagram, name: 'Instagram', volume: '34K', color: '#FEF48D' },
     { icon: Phone, name: 'Voice', volume: '12K', color: '#97BAFF' },
-    { icon: Globe, name: 'Web Chat', volume: '58K', color: '#E1FE03' },
+    { icon: Globe, name: 'Web Chat', volume: '58K', color: '#FEF48D' },
     { icon: Send, name: 'SMS', volume: '19K', color: '#97BAFF' },
   ]
   return (
@@ -289,7 +289,7 @@ export function OmniSection() {
 export function AutomationSection() {
   const nodes = [
     { label: 'Trigger', desc: 'New WhatsApp lead', color: '#97BAFF', icon: MessageCircle },
-    { label: 'AI Step', desc: 'Qualify + enrich', color: '#E1FE03', icon: Bot },
+    { label: 'AI Step', desc: 'Qualify + enrich', color: '#FEF48D', icon: Bot },
     { label: 'Action', desc: 'Create deal in CRM', color: '#fff', icon: Layers },
     { label: 'Notify', desc: 'Slack + SDR ping', color: '#000', icon: Zap },
   ]
@@ -332,7 +332,7 @@ export function AutomationSection() {
           </div>
           <div className="lg:col-span-7 order-1 lg:order-2">
             <Reveal>
-              <GlassBadge>Automation Builder</GlassBadge>
+              <GlassBadge>Step 07 · Ease of Use</GlassBadge>
               <h2 className="mt-5 text-[40px] leading-[1.05] md:text-[60px] md:leading-[1.03] tracking-[-0.03em] font-medium text-gradient-wove">
                 Automate anything. <span className="font-serif-display italic">In minutes.</span>
               </h2>
@@ -365,7 +365,7 @@ export function AnalyticsSection() {
       <div className="container mx-auto px-4 md:px-6 max-w-[1320px]">
         <Reveal>
           <div className="text-center max-w-[820px] mx-auto">
-            <GlassBadge>Realtime Analytics</GlassBadge>
+            <GlassBadge>Step 06 · Proof · Numbers</GlassBadge>
             <h2 className="mt-5 text-[40px] leading-[1.05] md:text-[60px] md:leading-[1.03] tracking-[-0.03em] font-medium text-gradient-wove">
               The <span className="font-serif-display italic">numbers</span>, live.
             </h2>
@@ -382,7 +382,7 @@ export function AnalyticsSection() {
               <GlassCard className="p-6">
                 <div className="text-[11px] uppercase tracking-wider text-black/50">{s.l}</div>
                 <div className="mt-2 font-serif-display text-[42px] leading-none text-black">{s.n}</div>
-                <div className="mt-2 inline-flex items-center text-[12px] px-2 py-0.5 bg-[#E1FE03] rounded-full font-medium">{s.t}</div>
+                <div className="mt-2 inline-flex items-center text-[12px] px-2 py-0.5 bg-[#FEF48D] rounded-full font-medium">{s.t}</div>
               </GlassCard>
             </Reveal>
           ))}
@@ -415,7 +415,7 @@ export function PricingSection() {
             <Reveal key={t.name} delay={i * 0.08}>
               <div className={`relative rounded-[28px] p-8 h-full flex flex-col ${t.highlight ? 'glass-dark text-white' : 'glass-light text-black'}`}>
                 {t.highlight && (
-                  <span className="absolute -top-3 left-8 h-6 px-2.5 rounded-full text-[11px] font-medium grid place-items-center bg-[#E1FE03] text-black">Most popular</span>
+                  <span className="absolute -top-3 left-8 h-6 px-2.5 rounded-full text-[11px] font-medium grid place-items-center bg-[#FEF48D] text-black">Most popular</span>
                 )}
                 <div className={`text-[13px] ${t.highlight ? 'text-white/70' : 'text-black/60'}`}>{t.name}</div>
                 <div className="mt-2 flex items-baseline gap-1">
@@ -427,7 +427,7 @@ export function PricingSection() {
                   {t.feats.map((f) => (
                     <li key={f} className="flex items-center gap-3 text-[14px]">
                       <span className={`w-5 h-5 rounded-full grid place-items-center shrink-0 ${t.highlight ? 'bg-white/10' : 'bg-black/5'}`}>
-                        <Check className={`w-3 h-3 ${t.highlight ? 'text-[#E1FE03]' : 'text-black'}`} strokeWidth={3} />
+                        <Check className={`w-3 h-3 ${t.highlight ? 'text-[#FEF48D]' : 'text-black'}`} strokeWidth={3} />
                       </span>
                       <span className={t.highlight ? 'text-white/90' : 'text-black/80'}>{f}</span>
                     </li>
@@ -458,7 +458,7 @@ export function TestimonialsSection() {
         <Reveal>
           <div className="flex items-end justify-between mb-14">
             <div>
-              <GlassBadge>Customers</GlassBadge>
+              <GlassBadge>Step 06 · Proof · Voices</GlassBadge>
               <h2 className="mt-5 text-[40px] leading-[1.05] md:text-[60px] md:leading-[1.03] tracking-[-0.03em] font-medium text-gradient-wove max-w-[720px]">
                 Loved by <span className="font-serif-display italic">operators</span>.
               </h2>
@@ -500,7 +500,7 @@ export function FAQSection() {
       <div className="container mx-auto px-4 md:px-6 max-w-[1080px]">
         <Reveal>
           <div className="text-center mb-14">
-            <GlassBadge>FAQ</GlassBadge>
+            <GlassBadge>Step 08 · FAQ</GlassBadge>
             <h2 className="mt-5 text-[40px] leading-[1.05] md:text-[60px] md:leading-[1.03] tracking-[-0.03em] font-medium text-gradient-wove">
               Answers, <span className="font-serif-display italic">not fluff.</span>
             </h2>
@@ -540,7 +540,7 @@ export function CTASection() {
             <div aria-hidden className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)', backgroundSize: '48px 48px', maskImage: 'radial-gradient(ellipse 60% 60% at 50% 50%, black, transparent 80%)', WebkitMaskImage: 'radial-gradient(ellipse 60% 60% at 50% 50%, black, transparent 80%)' }} />
             <div className="relative grid md:grid-cols-2 gap-10 items-end">
               <div>
-                <span className="inline-flex items-center gap-2 h-8 px-3.5 rounded-full text-[12.5px] bg-white/10 text-white/85 border border-white/10"><Sparkles className="w-3.5 h-3.5 text-[#E1FE03]" /> Ready in 14 days</span>
+                <span className="inline-flex items-center gap-2 h-8 px-3.5 rounded-full text-[12.5px] bg-white/10 text-white/85 border border-white/10"><Sparkles className="w-3.5 h-3.5 text-[#FEF48D]" /> Ready in 14 days</span>
                 <h2 className="mt-6 text-[40px] leading-[1.05] md:text-[68px] md:leading-[1.02] tracking-[-0.03em] font-medium text-white">
                   Start closing more.<br /><span className="font-serif-display italic text-white/95">Autonomously.</span>
                 </h2>
@@ -572,11 +572,11 @@ export function FooterSection() {
         <div className="grid md:grid-cols-6 gap-10 md:gap-8">
           <div className="md:col-span-2">
             <a href="#" className="inline-flex items-center gap-2">
-              <span className="w-8 h-8 rounded-full grid place-items-center bg-black"><Sparkles className="w-4 h-4 text-[#E1FE03]" strokeWidth={2.5} /></span>
+              <span className="w-8 h-8 rounded-full grid place-items-center bg-black"><Sparkles className="w-4 h-4 text-[#FEF48D]" strokeWidth={2.5} /></span>
               <span className="font-serif-display text-[28px] text-black">Wove</span>
             </a>
             <p className="mt-4 text-[14px] text-black/60 max-w-[280px] leading-relaxed">The autonomous revenue operating system for D2C and B2B enterprises.</p>
-            <div className="mt-6"><GlassBadge><span className="w-1.5 h-1.5 rounded-full bg-[#E1FE03]" /> All systems normal</GlassBadge></div>
+            <div className="mt-6"><GlassBadge><span className="w-1.5 h-1.5 rounded-full bg-[#FEF48D]" /> All systems normal</GlassBadge></div>
           </div>
           {cols.map((c) => (
             <div key={c.h}>

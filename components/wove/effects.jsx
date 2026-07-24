@@ -123,7 +123,7 @@ export function DotBot() {
           onClick={() => { setOpen(o => !o); setWave(true); setTimeout(() => setWave(false), 800) }}
           className="relative w-11 h-11 rounded-full grid place-items-center"
           style={{
-            background: 'radial-gradient(circle at 35% 30%, #ffffff, #E1FE03 55%, #97BAFF 100%)',
+            background: 'radial-gradient(circle at 35% 30%, #ffffff, #FEF48D 55%, #97BAFF 100%)',
             boxShadow: '0 8px 24px -6px rgba(225,254,3,0.6), 0 0 0 1px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.9)',
           }}
         >

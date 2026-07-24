@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'sw
 
 export const metadata = {
   title: 'WOVE — The Autonomous Revenue Operating System',
-  description: 'AI-Powered Revenue Operating System for D2C & B2B Enterprises. CRM, Omnichannel, AI Agents, Automation & Analytics — unified.',
+  description: 'AI-Powered Revenue Operating System for D2C & B2B Enterprises.',
 }
 
 export default function RootLayout({ children }) {
@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
       <head>
         <script dangerouslySetInnerHTML={{__html:'window.addEventListener("error",function(e){if(e.error instanceof DOMException&&e.error.name==="DataCloneError"&&e.message&&e.message.includes("PerformanceServerTiming")){e.stopImmediatePropagation();e.preventDefault()}},true);'}} />
       </head>
-      <body className="bg-[#D7D7D7] text-black antialiased selection:bg-[#E1FE03] selection:text-black">
+      <body className="bg-white text-black antialiased selection:bg-[#FEF48D] selection:text-black">
         <Providers>{children}</Providers>
       </body>
     </html>

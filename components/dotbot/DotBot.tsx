@@ -1,40 +1,33 @@
 "use client"
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import ParticleField from "./ParticleField"
-import Eyes from "./Eyes"
-import Face, { BotExpression } from "./Face"
-import RadialMenu, { MenuItem } from "./RadialMenu"
+import { motion } from "framer-motion"
+import DotSphere from "./DotSphere"
+import OrbitalMenu, { OrbitalItem } from "./OrbitalMenu"
 import { useMousePosition } from "./hooks/useMousePosition"
 import { useOutsideClick } from "./hooks/useOutsideClick"
+import { useShyFollow } from "./hooks/useShyFollow"
 
-/** Section → (expression, label). Order defines menu order. */
 interface SectionSpec {
   id: string
   label: string
-  expression: BotExpression
-  emoji: string
+  accent: string
   isPrimary?: boolean
 }
 
 const SECTIONS: SectionSpec[] = [
-  { id: "home", label: "Home", expression: "happy", emoji: "😊" },
-  { id: "features", label: "Platform", expression: "robot", emoji: "🤖" },
-  { id: "ai-agents", label: "AI Agents", expression: "thinking", emoji: "🧠" },
-  { id: "testimonials", label: "Customers", expression: "laughing", emoji: "😄" },
-  { id: "pricing", label: "Pricing", expression: "excited", emoji: "💰" },
-  { id: "faq", label: "Docs", expression: "studious", emoji: "📚" },
-  { id: "cta", label: "Contact", expression: "waving", emoji: "👋" },
-  { id: "cta", label: "Book Demo", expression: "waving", emoji: "✨", isPrimary: true },
+  { id: "home", label: "Attention", accent: "#FEF48D" },
+  { id: "trusted", label: "Trust", accent: "#FEF48D" },
+  { id: "problem", label: "Problem", accent: "#FF9AA0" },
+  { id: "ai-agents", label: "Solution", accent: "#97BAFF" },
+  { id: "features", label: "Features", accent: "#FEF48D" },
+  { id: "testimonials", label: "Proof", accent: "#97BAFF" },
+  { id: "automation", label: "Ease of Use", accent: "#FEF48D" },
+  { id: "pricing", label: "Pricing", accent: "#000000" },
+  { id: "faq", label: "FAQ", accent: "#000000" },
+  { id: "cta", label: "Book Demo", accent: "#FEF48D", isPrimary: true },
 ]
 
-export interface DotBotProps {
-  /** Override desktop size; default 76px. */
-  size?: number
-}
-
-/** Breakpoint-aware body size. */
-function useResponsiveSize(base = 76) {
+function useResponsiveSize(base = 72) {
   const [size, setSize] = useState(base)
   useEffect(() => {
     const compute = () => {
@@ -50,17 +43,13 @@ function useResponsiveSize(base = 76) {
   return size
 }
 
-/** Detect the most-visible section using IntersectionObserver. */
 function useActiveSection(sectionIds: string[]) {
   const [active, setActive] = useState<string | null>(null)
   useEffect(() => {
     if (typeof window === "undefined") return
     const unique = Array.from(new Set(sectionIds))
-    const els = unique
-      .map((id) => document.getElementById(id))
-      .filter((e): e is HTMLElement => !!e)
+    const els = unique.map((id) => document.getElementById(id)).filter((e): e is HTMLElement => !!e)
     if (!els.length) return
-
     const ratios = new Map<string, number>()
     const obs = new IntersectionObserver(
       (entries) => {
@@ -78,52 +67,47 @@ function useActiveSection(sectionIds: string[]) {
   return active
 }
 
-export default function DotBot({ size: sizeProp = 76 }: DotBotProps) {
+export interface DotBotProps {
+  size?: number
+}
+
+export default function DotBot({ size: sizeProp = 72 }: DotBotProps) {
   const size = useResponsiveSize(sizeProp)
   const mouse = useMousePosition()
-  const [hover, setHover] = useState(false)
   const [open, setOpen] = useState(false)
-  const [wiggleKey, setWiggleKey] = useState(0)
+  const [hover, setHover] = useState(false)
   const containerRef = useRef<HTMLDivElement | null>(null)
 
   const sectionIds = useMemo(() => SECTIONS.map((s) => s.id), [])
   const activeId = useActiveSection(sectionIds)
 
-  // Current expression follows the active section (default = happy).
-  const expression: BotExpression = useMemo(() => {
-    if (hover) return "laughing"
-    const s = SECTIONS.find((x) => x.id === activeId)
-    return s?.expression ?? "happy"
-  }, [activeId, hover])
-
-  // Slight rotation toward cursor when it’s near the bot (adds “aliveness”).
-  const [tilt, setTilt] = useState(0)
+  // Shy following behaviour with resting position bottom-right
+  const [rest, setRest] = useState({ x: 0, y: 0 })
   useEffect(() => {
-    if (!containerRef.current || !mouse.active) { setTilt(0); return }
-    const r = containerRef.current.getBoundingClientRect()
-    const cx = r.left + r.width / 2
-    const cy = r.top + r.height / 2
-    const dx = mouse.x - cx
-    const dy = mouse.y - cy
-    const dist = Math.hypot(dx, dy)
-    if (dist > 260) { setTilt(0); return }
-    // Rotate up to ±6deg toward cursor (based on horizontal offset)
-    const t = Math.max(-1, Math.min(1, dx / 200))
-    setTilt(t * 6)
-  }, [mouse.x, mouse.y, mouse.active])
-
-  // Occasional wiggle for personality (every 8–14s)
-  useEffect(() => {
-    let cancelled = false
-    const loop = () => {
-      const wait = 8000 + Math.random() * 6000
-      setTimeout(() => { if (!cancelled) { setWiggleKey((k) => k + 1); loop() } }, wait)
-    }
-    loop()
-    return () => { cancelled = true }
+    const compute = () => setRest({ x: window.innerWidth - 100, y: window.innerHeight - 100 })
+    compute()
+    window.addEventListener("resize", compute)
+    return () => window.removeEventListener("resize", compute)
   }, [])
 
+  const { x, y, frozen } = useShyFollow(
+    open ? { x: 0, y: 0, active: false } : mouse,
+    {
+      offset: 150,
+      freezeInside: 130,
+      unfreezeOutside: 210,
+      restingX: rest.x,
+      restingY: rest.y,
+    },
+  )
+
   useOutsideClick(containerRef, () => setOpen(false), open)
+
+  // Accent colour reflects current section (subtle context awareness)
+  const accent = useMemo(() => {
+    const s = SECTIONS.find((x) => x.id === activeId)
+    return s?.accent ?? "#FEF48D"
+  }, [activeId])
 
   const scrollToSection = useCallback((id: string) => {
     setOpen(false)
@@ -132,34 +116,67 @@ export default function DotBot({ size: sizeProp = 76 }: DotBotProps) {
     else window.scrollTo({ top: 0, behavior: "smooth" })
   }, [])
 
-  const menuItems: MenuItem[] = useMemo(
-    () => SECTIONS.map((s) => ({ id: s.id, label: s.label, emoji: s.emoji, isPrimary: s.isPrimary })),
+  const menuItems: OrbitalItem[] = useMemo(
+    () => SECTIONS.map((s) => ({ id: s.id, label: s.label, isPrimary: s.isPrimary })),
     [],
   )
 
-  const radius = size * 3.4 // radial menu spread
+  // When menu is open, park the bot at viewport center so all orbits fit comfortably inside the viewport.
+  const [parked, setParked] = useState({ x: 0, y: 0 })
+  useEffect(() => {
+    const compute = () => setParked({ x: window.innerWidth / 2, y: window.innerHeight / 2 })
+    compute()
+    window.addEventListener("resize", compute)
+    return () => window.removeEventListener("resize", compute)
+  }, [])
+
+  const displayX = open ? parked.x : x
+  const displayY = open ? parked.y : y
 
   return (
-    <div
+    <motion.div
       ref={containerRef}
-      className="fixed z-[999] pointer-events-none"
-      style={{ right: 32, bottom: 32, width: size, height: size }}
       role="complementary"
-      aria-label="Dot Bot — navigation assistant"
+      aria-label="Dot Bot — navigation companion"
+      className="fixed z-[999] pointer-events-none"
+      style={{
+        top: 0,
+        left: 0,
+        width: size,
+        height: size,
+        x: displayX,
+        y: displayY,
+        translateX: "-50%",
+        translateY: "-50%",
+      }}
     >
-      {/* Radial menu is rendered OUTSIDE the pointer-events-none via its own children */}
+      {/* Orbital menu — rendered above bot so orbits pass in front/behind (via z-index per ball) */}
       <div className="absolute inset-0">
-        <RadialMenu
+        <OrbitalMenu
           open={open}
           items={menuItems}
           activeId={activeId}
           onSelect={scrollToSection}
           botSize={size}
-          radius={radius}
         />
       </div>
 
-      {/* The bot itself */}
+      {/* Frozen indicator ring — hint that you can click the bot */}
+      {frozen && !open && (
+        <motion.span
+          aria-hidden
+          className="pointer-events-none absolute rounded-full"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: [1, 1.15, 1] }}
+          transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+          style={{
+            inset: -10,
+            border: "1px dashed rgba(0,0,0,0.35)",
+          }}
+        />
+      )}
+
+      {/* The dot-sphere bot */}
       <motion.button
         type="button"
         aria-label={open ? "Close navigation" : "Open navigation"}
@@ -170,102 +187,45 @@ export default function DotBot({ size: sizeProp = 76 }: DotBotProps) {
         onBlur={() => setHover(false)}
         onClick={() => setOpen((o) => !o)}
         data-magnetic
-        data-cursor="hey"
-        className="absolute inset-0 pointer-events-auto outline-none focus-visible:ring-2 focus-visible:ring-black/30 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent rounded-full"
-        style={{ cursor: "pointer" }}
-        // Idle breathing + float + hover scale + tilt
+        data-cursor={frozen ? "click me" : "hey"}
+        className="absolute inset-0 pointer-events-auto outline-none focus-visible:ring-2 focus-visible:ring-black/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded-full"
+        style={{ cursor: "pointer", background: "transparent" }}
         animate={{
-          scale: hover ? 1.08 : [1, 1.03, 1],
-          y: hover ? -6 : [0, -4, 0],
-          rotate: tilt,
+          scale: hover || open ? 1.1 : frozen ? 1.05 : [1, 1.03, 1],
         }}
         transition={{
-          scale: hover ? { duration: 0.25 } : { duration: 4.2, repeat: Infinity, ease: "easeInOut" },
-          y: hover ? { duration: 0.25 } : { duration: 4.2, repeat: Infinity, ease: "easeInOut" },
-          rotate: { type: "spring", stiffness: 120, damping: 14 },
+          scale: hover || open || frozen
+            ? { duration: 0.3 }
+            : { duration: 4.6, repeat: Infinity, ease: "easeInOut" },
         }}
       >
-        {/* Wiggle layer — remounts to trigger tiny playful animation */}
-        <motion.div
-          key={wiggleKey}
-          animate={{ rotate: [0, -6, 6, -3, 0] }}
-          transition={{ duration: 0.9, ease: "easeInOut" }}
-          className="absolute inset-0"
-        >
-          <BotBody size={size} expression={expression} mouse={mouse} hover={hover} open={open} />
-        </motion.div>
+        <DotSphere
+          size={size}
+          count={90}
+          color="#000000"
+          accentColor={accent}
+          rotationSpeed={open ? 0.014 : hover ? 0.011 : 0.006}
+          active={open || hover}
+          wobble
+        />
 
-        {/* Glow halo intensifies on hover */}
+        {/* Subtle halo */}
         <motion.span
           aria-hidden
           className="pointer-events-none absolute inset-0 rounded-full"
-          animate={{ opacity: hover ? 1 : 0.55, scale: hover ? 1.35 : 1.15 }}
-          transition={{ duration: 0.35 }}
+          animate={{
+            opacity: hover || open ? 0.95 : 0.5,
+            scale: hover || open ? 1.4 : 1.15,
+          }}
+          transition={{ duration: 0.4 }}
           style={{
             zIndex: -1,
-            background: "radial-gradient(circle, rgba(255,245,157,0.65), rgba(255,245,157,0) 60%)",
+            background: `radial-gradient(circle, ${accent}66, ${accent}00 60%)`,
             filter: "blur(10px)",
           }}
         />
       </motion.button>
-    </div>
-  )
-}
-
-interface BotBodyProps {
-  size: number
-  expression: BotExpression
-  mouse: ReturnType<typeof useMousePosition>
-  hover: boolean
-  open: boolean
-}
-
-/** Composed SVG body: particles + eyes + face. Kept as pure presentational. */
-function BotBody({ size, expression, mouse, hover, open }: BotBodyProps) {
-  return (
-    <div
-      className="relative rounded-full"
-      style={{
-        width: size,
-        height: size,
-        background: "radial-gradient(circle at 35% 30%, #FFFFFF 0%, #FFF9A6 30%, #FFF59D 65%, #F4D33A 100%)",
-        boxShadow: "0 12px 30px -8px rgba(244,197,24,0.55), 0 2px 0 rgba(255,255,255,0.7) inset, 0 -6px 14px rgba(180,140,0,0.15) inset",
-      }}
-    >
-      {/* Ambient orbiting particles (SVG) */}
-      <ParticleField size={size} count={70} active={hover || open} />
-
-      {/* SVG features overlay */}
-      <svg
-        width={size}
-        height={size}
-        viewBox={`0 0 ${size} ${size}`}
-        className="absolute inset-0"
-        aria-hidden
-      >
-        <Eyes
-          botSize={size}
-          mouse={mouse}
-          winkRight={expression === "waving"}
-          closed={expression === "laughing"}
-        />
-        <Face size={size} expression={expression} />
-      </svg>
-
-      {/* Specular highlight */}
-      <span
-        aria-hidden
-        className="pointer-events-none absolute rounded-full"
-        style={{
-          width: size * 0.35,
-          height: size * 0.22,
-          left: size * 0.16,
-          top: size * 0.08,
-          background: "radial-gradient(ellipse, rgba(255,255,255,0.85), rgba(255,255,255,0) 60%)",
-          filter: "blur(2px)",
-        }}
-      />
-    </div>
+    </motion.div>
   )
 }
 

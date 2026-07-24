@@ -10,7 +10,7 @@ const REV_B = [{v:12},{v:20},{v:18},{v:22},{v:30},{v:28},{v:40},{v:44},{v:55},{v
 const PIPELINE = [
   { stage: 'Qualified', count: 128, amount: '$1.24M', bg: 'bg-black/[0.04]' },
   { stage: 'Proposal', count: 74, amount: '$860K', bg: 'bg-[#97BAFF]/25' },
-  { stage: 'Negotiation', count: 32, amount: '$420K', bg: 'bg-[#E1FE03]/35' },
+  { stage: 'Negotiation', count: 32, amount: '$420K', bg: 'bg-[#FEF48D]/35' },
   { stage: 'Won', count: 18, amount: '$312K', bg: 'bg-black text-white' },
 ]
 const MESSAGES = [
@@ -42,13 +42,13 @@ export function LiveDashboard() {
                 <div className="text-[11px] tracking-wider text-black/50 uppercase">Revenue · Last 30 days</div>
                 <div className="mt-1 flex items-end gap-2">
                   <span className="font-serif-display text-[38px] md:text-[44px] leading-none text-black">$4.82M</span>
-                  <span className="inline-flex items-center gap-1 text-[12px] text-black bg-[#E1FE03] px-2 py-0.5 rounded-full pb-1 font-medium">
+                  <span className="inline-flex items-center gap-1 text-[12px] text-black bg-[#FEF48D] px-2 py-0.5 rounded-full pb-1 font-medium">
                     <ArrowUpRight className="w-3 h-3" /> +23.7%
                   </span>
                 </div>
               </div>
               <GlassBadge>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#E1FE03] ring-2 ring-black animate-pulse" /> Live
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FEF48D] ring-2 ring-black animate-pulse" /> Live
               </GlassBadge>
             </div>
             <div className="h-24 md:h-28">
@@ -85,7 +85,7 @@ export function LiveDashboard() {
           <GlassCard className="p-4 md:p-5">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-lg grid place-items-center bg-black"><MessageCircle className="w-3.5 h-3.5 text-[#E1FE03]" /></div>
+                <div className="w-7 h-7 rounded-lg grid place-items-center bg-black"><MessageCircle className="w-3.5 h-3.5 text-[#FEF48D]" /></div>
                 <div>
                   <div className="text-[13px] text-black font-medium">WhatsApp Inbox</div>
                   <div className="text-[11px] text-black/50">4 new · AI auto-replies on</div>
@@ -98,14 +98,14 @@ export function LiveDashboard() {
                 <motion.div key={m.name} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.9 + i * 0.12, duration: 0.6 }}
                   className="flex items-center gap-3 p-2.5 rounded-2xl bg-white/50 hover:bg-white/80 transition-colors border border-black/5">
-                  <div className={`w-8 h-8 rounded-full grid place-items-center text-[11px] font-medium ${m.tone === 'lime' ? 'bg-[#E1FE03] text-black' : 'bg-[#97BAFF] text-black'}`}>
+                  <div className={`w-8 h-8 rounded-full grid place-items-center text-[11px] font-medium ${m.tone === 'lime' ? 'bg-[#FEF48D] text-black' : 'bg-[#97BAFF] text-black'}`}>
                     {m.name.split(' ').map(s => s[0]).slice(0, 2).join('')}
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2"><span className="text-[12.5px] text-black truncate">{m.name}</span><span className="text-[10px] text-black/40">· {m.tag}</span></div>
                     <div className="text-[11.5px] text-black/55 truncate">{m.msg}</div>
                   </div>
-                  {m.unread > 0 && <span className="shrink-0 h-5 min-w-[20px] px-1.5 rounded-full text-[10px] font-medium grid place-items-center bg-black text-[#E1FE03]">{m.unread}</span>}
+                  {m.unread > 0 && <span className="shrink-0 h-5 min-w-[20px] px-1.5 rounded-full text-[10px] font-medium grid place-items-center bg-black text-[#FEF48D]">{m.unread}</span>}
                 </motion.div>
               ))}
             </div>
@@ -147,9 +147,9 @@ export function LiveDashboard() {
           <GlassCard className="p-3.5">
             <div className="flex items-center gap-2 mb-2">
               <div className="w-7 h-7 rounded-full grid place-items-center relative"
-                style={{ background: 'radial-gradient(circle at 30% 30%, #fff, #E1FE03 60%, #97BAFF 100%)' }}>
+                style={{ background: 'radial-gradient(circle at 30% 30%, #fff, #FEF48D 60%, #97BAFF 100%)' }}>
                 <Sparkles className="w-3.5 h-3.5 text-black" />
-                <span className="absolute -inset-1 rounded-full blur-md opacity-60" style={{ background: '#E1FE03' }} />
+                <span className="absolute -inset-1 rounded-full blur-md opacity-60" style={{ background: '#FEF48D' }} />
               </div>
               <div>
                 <div className="text-[12.5px] text-black">Wove Copilot</div>
@@ -189,7 +189,7 @@ function NotificationsCard() {
         <GlassCard className="p-3 pr-4" style={{ boxShadow: '0 0 0 1px rgba(225,254,3,0.5), 0 20px 60px -10px rgba(225,254,3,0.55)' }}>
           <AnimatePresence mode="wait">
             <motion.div key={index} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.4 }} className="flex items-center gap-2.5">
-              <span className="w-8 h-8 rounded-xl grid place-items-center shrink-0 bg-[#E1FE03] border border-black/10"><Icon className="w-4 h-4 text-black" /></span>
+              <span className="w-8 h-8 rounded-xl grid place-items-center shrink-0 bg-[#FEF48D] border border-black/10"><Icon className="w-4 h-4 text-black" /></span>
               <div className="min-w-0"><div className="text-[12.5px] text-black truncate">{n.text}</div><div className="text-[10.5px] text-black/45">{n.time}</div></div>
             </motion.div>
           </AnimatePresence>
