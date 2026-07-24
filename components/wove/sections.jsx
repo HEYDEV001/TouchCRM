@@ -8,6 +8,100 @@ import { useState } from 'react'
 import { GlassCard, GlassBadge, LimeCTA, GhostCTA, DarkCTA } from './liquid-glass'
 import { CountUp, Reveal } from './effects'
 
+/* ---------------- Journey (Customer Lifecycle) ---------------- */
+const JOURNEY = [
+  { step: 'Visitor', desc: 'AI web-chat welcomes, captures intent, syncs to CRM' },
+  { step: 'Lead', desc: 'Auto-qualified & routed to WhatsApp / Email agent' },
+  { step: 'Purchase', desc: 'Cart recovery + payment nudges reduce drop-offs' },
+  { step: 'Order Updates', desc: 'Delivery, invoice, review requests — all automated' },
+  { step: 'Cross-sell', desc: 'AI recommends the right product at the right moment' },
+  { step: 'Repeat', desc: 'Personalized re-engagement drives second orders' },
+  { step: 'VIP', desc: 'Top customers get tiered loyalty & concierge treatment' },
+  { step: 'Win-back', desc: 'AI detects churn signals and re-activates dormant users' },
+]
+export function JourneySection() {
+  return (
+    <section id="journey" className="relative py-24 md:py-36">
+      <div className="container mx-auto px-4 md:px-6 max-w-[1320px]">
+        <Reveal>
+          <div className="text-center max-w-[820px] mx-auto">
+            <GlassBadge>Customer Journey</GlassBadge>
+            <h2 className="mt-5 text-[40px] leading-[1.05] md:text-[60px] md:leading-[1.03] tracking-[-0.03em] font-medium text-gradient-wove">
+              One lifecycle. <span className="font-serif-display italic">Every</span> touchpoint.
+            </h2>
+            <p className="mt-5 text-[16px] text-black/60">From first visit to VIP win-back — Wove orchestrates the entire relationship, automatically.</p>
+          </div>
+        </Reveal>
+        <div className="mt-14 md:mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+          {JOURNEY.map((j, i) => (
+            <Reveal key={j.step} delay={i * 0.05}>
+              <div className="relative rounded-[24px] p-6 h-full glass-light group overflow-hidden">
+                <div className="absolute top-4 right-4 text-[11px] text-black/35 uppercase tracking-wider">0{i + 1}</div>
+                <div className="w-8 h-8 rounded-full grid place-items-center mb-4 border border-black/10"
+                  style={{ background: i % 2 === 0 ? '#FEF48D' : '#97BAFF' }}>
+                  <span className="text-[13px] font-medium text-black">{i + 1}</span>
+                </div>
+                <div className="text-[17px] text-black font-medium tracking-tight">{j.step}</div>
+                <div className="mt-2 text-[13.5px] text-black/60 leading-relaxed">{j.desc}</div>
+                {i < JOURNEY.length - 1 && (
+                  <div aria-hidden className="hidden lg:block absolute top-1/2 -right-2.5 w-5 h-px bg-black/15" />
+                )}
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ---------------- Integrations ---------------- */
+const INTEGRATIONS = [
+  { name: 'Shopify', color: '#95BF47' },
+  { name: 'WooCommerce', color: '#7F54B3' },
+  { name: 'Meta Ads', color: '#0866FF' },
+  { name: 'Google Ads', color: '#FBBC05' },
+  { name: 'Razorpay', color: '#0C2451' },
+  { name: 'Shiprocket', color: '#4B67F3' },
+  { name: 'HubSpot', color: '#FF7A59' },
+  { name: 'Zoho', color: '#E32C2A' },
+  { name: 'Klaviyo', color: '#000000' },
+  { name: 'Stripe', color: '#635BFF' },
+  { name: 'Instagram', color: '#E4405F' },
+  { name: 'WhatsApp', color: '#25D366' },
+]
+export function IntegrationsSection() {
+  return (
+    <section id="integrations" className="relative py-24 md:py-36">
+      <div className="container mx-auto px-4 md:px-6 max-w-[1320px]">
+        <Reveal>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+            <div>
+              <GlassBadge>Integrations</GlassBadge>
+              <h2 className="mt-5 text-[40px] leading-[1.05] md:text-[56px] md:leading-[1.03] tracking-[-0.03em] font-medium text-gradient-wove max-w-[720px]">
+                Plays nicely with <span className="font-serif-display italic">your stack.</span>
+              </h2>
+            </div>
+            <p className="text-black/60 text-[16px] max-w-[380px]">200+ native integrations. Native APIs, webhooks, and no-code Zapier. Live in days, not quarters.</p>
+          </div>
+        </Reveal>
+        <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4">
+          {INTEGRATIONS.map((ig, i) => (
+            <Reveal key={ig.name} delay={i * 0.03}>
+              <div className="rounded-2xl p-5 h-24 flex flex-col items-center justify-center gap-2 glass-light hover:-translate-y-0.5 transition-transform" data-magnetic>
+                <span className="w-3 h-3 rounded-full" style={{ background: ig.color, boxShadow: `0 0 0 3px ${ig.color}22` }} />
+                <span className="text-[12.5px] text-black/80 font-medium">{ig.name}</span>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+
+
 /* ---------------- 2. Trusted Companies ---------------- */
 const LOGOS = ['Ripple', 'Northwind', 'Kite Labs', 'Orbit', 'Helios', 'Vellum', 'Aster', 'Meridian', 'Loop', 'Corvus']
 export function TrustedSection() {
@@ -32,9 +126,9 @@ export function TrustedSection() {
 /* ---------------- 3. Problem ---------------- */
 export function ProblemSection() {
   const pains = [
-    { k: '7+', l: 'Disconnected tools per revenue team', d: 'CRM, spreadsheets, WhatsApp, ads dashboards, emails — all speaking different languages.' },
-    { k: '68%', l: 'Of leads never followed up', d: 'By the time an SDR replies, the intent has decayed. Speed to lead is broken.' },
-    { k: '$1.2M', l: 'Wasted per 100 reps annually', d: 'On admin, data entry and context-switching that AI should handle in the background.' },
+    { k: '7+', l: 'Disconnected tools per brand', d: 'CRM, WhatsApp, ads, reviews, loyalty — all speaking different languages. Nothing joins the dots.' },
+    { k: '68%', l: 'Of first-time buyers never return', d: 'By the time you nudge, the intent has decayed. Retention is broken by default.' },
+    { k: '$1.2M', l: 'Lost per 100 SKUs annually', d: 'To abandoned carts, un-answered messages, and generic campaigns AI should handle in the background.' },
   ]
   return (
     <section id="problem" className="relative py-24 md:py-36">
@@ -42,8 +136,7 @@ export function ProblemSection() {
         <Reveal>
           <GlassBadge>Step 03 · Problem</GlassBadge>
           <h2 className="mt-6 max-w-[900px] text-[40px] leading-[1.05] md:text-[64px] md:leading-[1.03] tracking-[-0.03em] font-medium text-gradient-wove">
-            Revenue teams are drowning in <span className="font-serif-display italic">tools</span>, not
-            <br className="hidden md:block" /> closing deals.
+            Growing revenue is easy.<br className="hidden md:block" /> Keeping <span className="font-serif-display italic">customers</span> isn't.
           </h2>
         </Reveal>
         <div className="mt-14 md:mt-20 grid md:grid-cols-3 gap-5">
@@ -542,9 +635,9 @@ export function CTASection() {
               <div>
                 <span className="inline-flex items-center gap-2 h-8 px-3.5 rounded-full text-[12.5px] bg-white/10 text-white/85 border border-white/10"><Sparkles className="w-3.5 h-3.5 text-[#FEF48D]" /> Ready in 14 days</span>
                 <h2 className="mt-6 text-[40px] leading-[1.05] md:text-[68px] md:leading-[1.02] tracking-[-0.03em] font-medium text-white">
-                  Start closing more.<br /><span className="font-serif-display italic text-white/95">Autonomously.</span>
+                  Ready to build a brand<br /><span className="font-serif-display italic text-white/95">customers keep coming back to?</span>
                 </h2>
-                <p className="mt-5 text-[16px] text-white/70 max-w-[420px]">Join 2,400+ growth teams who replaced their revenue stack with Wove.</p>
+                <p className="mt-5 text-[16px] text-white/70 max-w-[440px]">Join 2,400+ fast-growing D2C brands running their customer engagement on Wove.</p>
               </div>
               <div className="flex flex-col sm:flex-row md:justify-end gap-3">
                 <LimeCTA size="lg">Book Demo <ArrowRight className="w-4 h-4" /></LimeCTA>

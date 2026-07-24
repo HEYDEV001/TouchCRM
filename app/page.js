@@ -12,8 +12,9 @@ import { Reveal } from '@/components/wove/effects'
 const DotBot = dynamic(() => import('@/components/dotbot/DotBot'), { ssr: false })
 import {
   TrustedSection, ProblemSection, FeaturesSection, AIAgentsSection, CRMSection,
-  OmniSection, AutomationSection, AnalyticsSection, PricingSection,
-  TestimonialsSection, FAQSection, CTASection, FooterSection
+  OmniSection, AutomationSection, AnalyticsSection,
+  TestimonialsSection, CTASection, FooterSection,
+  JourneySection, IntegrationsSection
 } from '@/components/wove/sections'
 
 const TRUST = ['Ripple', 'Northwind', 'Kite Labs', 'Orbit', 'Helios', 'Vellum']
@@ -44,33 +45,31 @@ const App = () => {
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FEF48D]" />
                   </span>
                   <Sparkles className="w-3.5 h-3.5 text-black/80" />
-                  AI Powered Revenue Operating System
+                  AI Customer Engagement Suite
                 </GlassBadge>
               </motion.div>
 
               <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.0, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                className="mt-6 md:mt-8 text-[42px] leading-[1.02] md:text-[62px] md:leading-[1.02] lg:text-[72px] lg:leading-[1.01] tracking-[-0.03em] font-medium text-gradient-wove">
-                The <span className="font-serif-display italic text-black">Autonomous</span> Revenue
-                <br className="hidden md:block" /> Operating System for
-                <br className="hidden md:block" /> <span className="text-gradient-lime font-serif-display italic">D2C &amp; B2B</span> Enterprises.
+                className="mt-6 md:mt-8 text-[42px] leading-[1.02] md:text-[60px] md:leading-[1.03] lg:text-[68px] lg:leading-[1.02] tracking-[-0.03em] font-medium text-gradient-wove">
+                Turn Every <span className="font-serif-display italic text-black">Customer</span>
+                <br className="hidden md:block" /> Into a <span className="text-gradient-lime font-serif-display italic">Repeat</span> Customer.
               </motion.h1>
 
               <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.45 }}
-                className="mt-6 md:mt-7 text-[15.5px] md:text-[17px] leading-[1.6] text-black/65 max-w-[520px]">
-                Wove unifies your CRM, WhatsApp, ads, automation and analytics — supercharged by AI agents that qualify leads, close deals and run campaigns while your team sleeps.
+                className="mt-6 md:mt-7 text-[15.5px] md:text-[17px] leading-[1.6] text-black/65 max-w-[540px]">
+                The AI-powered Customer Engagement Suite for D2C brands to acquire customers, recover abandoned carts, automate conversations, and maximize Customer Lifetime Value — all from one platform.
               </motion.p>
 
               <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.65 }}
                 className="mt-8 md:mt-10 flex flex-wrap items-center gap-3">
                 <LimeCTA size="lg" data-cursor="book demo">Book Demo <ArrowRight className="w-4 h-4" /></LimeCTA>
-                <GhostCTA size="lg" data-cursor="try free"><PlayCircle className="w-4 h-4" /> Start Free Trial</GhostCTA>
+                <GhostCTA size="lg" data-cursor="try free"><PlayCircle className="w-4 h-4" /> Watch Product Tour</GhostCTA>
               </motion.div>
 
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.9 }} className="mt-12 md:mt-14">
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="flex -space-x-1.5">{[0,1,2,3,4].map((i) => <Star key={i} className="w-3.5 h-3.5 fill-black text-black" />)}</div>
-                  <span className="text-[12.5px] text-black/60">4.9 · Trusted by 2,400+ growth teams</span>
+                <div className="flex items-center gap-2 mb-4 text-[12px] tracking-[0.16em] uppercase text-black/45">
+                  Trusted by fast-growing D2C brands
                 </div>
                 <div className="flex flex-wrap items-center gap-x-7 gap-y-3">
                   {TRUST.map((t) => <span key={t} className="text-[13px] tracking-[0.12em] uppercase text-black/40 hover:text-black transition-colors">{t}</span>)}
@@ -94,13 +93,13 @@ const App = () => {
       <ProblemSection />
       <AIAgentsSection />
       <FeaturesSection />
+      <JourneySection />
       <CRMSection />
       <OmniSection />
       <AnalyticsSection />
       <TestimonialsSection />
       <AutomationSection />
-      <PricingSection />
-      <FAQSection />
+      <IntegrationsSection />
       <CTASection />
       <FooterSection />
     </div>

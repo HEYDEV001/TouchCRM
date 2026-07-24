@@ -6,11 +6,10 @@ import { LimeCTA } from './liquid-glass'
 import { Sparkles, ArrowRight } from 'lucide-react'
 
 const NAV = [
-  { label: 'Platform', href: '#features' },
-  { label: 'AI Agents', href: '#ai-agents' },
-  { label: 'Customers', href: '#testimonials' },
+  { label: 'Products', href: '#features' },
+  { label: 'Resources', href: '#automation' },
+  { label: 'Partners', href: '#integrations' },
   { label: 'Pricing', href: '#pricing' },
-  { label: 'Docs', href: '#faq' },
 ]
 
 export function FloatingNav() {
