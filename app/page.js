@@ -11,10 +11,10 @@ import { Reveal } from '@/components/wove/effects'
 const DotBot = dynamic(() => import('@/components/dotbot/DotBot'), { ssr: false })
 import {
   TrustedSection, ProblemSection, FeaturesSection, AIAgentsSection, CRMSection,
-  OmniSection, AutomationSection, AnalyticsSection,
-  TestimonialsSection, CTASection, FooterSection,
-  JourneySection, IntegrationsSection
+  OmniSection, AutomationSection,
+  JourneySection
 } from '@/components/wove/sections'
+import { CTAYellowSection, FooterYellowSection } from '@/components/wove/cta-yellow'
 import { SectionBg, ParallaxStack, ParallaxPanel } from '@/components/wove/section-fx'
 
 const App = () => {
@@ -68,9 +68,9 @@ const App = () => {
 
             <motion.div className="lg:col-span-6 relative" style={{ y: dashY }}>
               <motion.div
-                initial={{ opacity: 0, y: 30, scale: 0.96 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 1.0, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                 className="relative"
               >
                 <img
@@ -81,8 +81,8 @@ const App = () => {
                   loading="eager"
                   fetchPriority="high"
                   decoding="async"
-                  className="w-full h-auto select-none pointer-events-none"
-                  style={{ filter: 'drop-shadow(0 40px 60px rgba(0,0,0,0.12)) drop-shadow(0 10px 20px rgba(0,0,0,0.05))' }}
+                  className="w-full h-auto select-none pointer-events-none block"
+                  style={{ mixBlendMode: 'multiply' }}
                 />
               </motion.div>
             </motion.div>
@@ -117,12 +117,12 @@ const App = () => {
         </ParallaxPanel>
       </ParallaxStack>
 
-      {/* Skip: standalone CRM section */}
+      {/* Skip: standalone CRM */}
       <SectionBg tone="white">
         <CRMSection />
       </SectionBg>
 
-      {/* Parallax group 2: Omni + Analytics + Testimonials */}
+      {/* Parallax group 2 (pair): Omni + Automation */}
       <ParallaxStack>
         <ParallaxPanel tone="ink">
           <div className="w-full text-white">
@@ -131,39 +131,16 @@ const App = () => {
         </ParallaxPanel>
         <ParallaxPanel tone="white">
           <div className="w-full">
-            <AnalyticsSection />
-          </div>
-        </ParallaxPanel>
-        <ParallaxPanel tone="cream">
-          <div className="w-full">
-            <TestimonialsSection />
+            <AutomationSection />
           </div>
         </ParallaxPanel>
       </ParallaxStack>
 
-      {/* Skip: standalone Automation */}
-      <SectionBg tone="white">
-        <AutomationSection />
-      </SectionBg>
+      {/* Playful yellow CTA with dome + cursor-tracking eyes */}
+      <CTAYellowSection />
 
-      {/* Parallax group 3: Integrations + CTA */}
-      <ParallaxStack>
-        <ParallaxPanel tone="ocean">
-          <div className="w-full text-white">
-            <IntegrationsSection />
-          </div>
-        </ParallaxPanel>
-        <ParallaxPanel tone="ink">
-          <div className="w-full">
-            <CTASection />
-          </div>
-        </ParallaxPanel>
-      </ParallaxStack>
-
-      {/* Footer — NO parallax */}
-      <SectionBg tone="white">
-        <FooterSection />
-      </SectionBg>
+      {/* Footer continues the same yellow — seamless with the dome */}
+      <FooterYellowSection />
     </div>
   )
 }
