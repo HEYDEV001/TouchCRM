@@ -28,7 +28,7 @@ const App = () => {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.9], [1, 0.4])
 
   return (
-    <div className="relative min-h-screen w-full overflow-x-hidden noise">
+    <div className="relative min-h-screen w-full overflow-x-clip noise">
       <Aurora />
       <CustomCursor />
       <FloatingNav />
