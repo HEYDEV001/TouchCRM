@@ -124,8 +124,8 @@ const App = () => {
 
       {/* Parallax group 2 (pair): Omni + Automation */}
       <ParallaxStack>
-        <ParallaxPanel tone="ink">
-          <div className="w-full text-white">
+        <ParallaxPanel tone="cream">
+          <div className="w-full">
             <OmniSection />
           </div>
         </ParallaxPanel>

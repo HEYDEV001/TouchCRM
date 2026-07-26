@@ -218,10 +218,11 @@ export function CTAYellowSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.6, duration: 0.6 }}
-            className="absolute top-[18%] left-1/2 -translate-x-1/2 flex items-center gap-2 text-black/70 text-[12px] uppercase tracking-[0.2em]"
+            className="absolute top-[16%] left-1/2 -translate-x-1/2 flex items-center justify-center gap-3 text-black/70 text-[12px] uppercase font-medium"
+            style={{ letterSpacing: '0.22em' }}
           >
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Say hi</span>
+            <span style={{ paddingLeft: '0.22em' }}>SAY HI</span>
             <Sparkles className="w-3.5 h-3.5" />
           </motion.div>
         </div>
