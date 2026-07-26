@@ -16,6 +16,7 @@ import {
   TestimonialsSection, CTASection, FooterSection,
   JourneySection, IntegrationsSection
 } from '@/components/wove/sections'
+import { SectionBg, ParallaxStack, ParallaxPanel } from '@/components/wove/section-fx'
 
 const TRUST = ['Ripple', 'Northwind', 'Kite Labs', 'Orbit', 'Helios', 'Vellum']
 
@@ -89,19 +90,80 @@ const App = () => {
         </div>
       </section>
 
-      <TrustedSection />
-      <ProblemSection />
-      <AIAgentsSection />
-      <FeaturesSection />
-      <JourneySection />
-      <CRMSection />
-      <OmniSection />
-      <AnalyticsSection />
-      <TestimonialsSection />
-      <AutomationSection />
-      <IntegrationsSection />
-      <CTASection />
-      <FooterSection />
+      <SectionBg tone="cream">
+        <TrustedSection />
+      </SectionBg>
+
+      <SectionBg tone="white">
+        <ProblemSection />
+      </SectionBg>
+
+      {/* Parallax group 1: Solution + Features + Journey (3 sections stacking) */}
+      <ParallaxStack>
+        <ParallaxPanel tone="ocean">
+          <div className="w-full text-white">
+            <AIAgentsSection />
+          </div>
+        </ParallaxPanel>
+        <ParallaxPanel tone="white">
+          <div className="w-full">
+            <FeaturesSection />
+          </div>
+        </ParallaxPanel>
+        <ParallaxPanel tone="butter">
+          <div className="w-full">
+            <JourneySection />
+          </div>
+        </ParallaxPanel>
+      </ParallaxStack>
+
+      {/* Skip: standalone CRM section */}
+      <SectionBg tone="white">
+        <CRMSection />
+      </SectionBg>
+
+      {/* Parallax group 2: Omni + Analytics + Testimonials */}
+      <ParallaxStack>
+        <ParallaxPanel tone="ink">
+          <div className="w-full text-white">
+            <OmniSection />
+          </div>
+        </ParallaxPanel>
+        <ParallaxPanel tone="white">
+          <div className="w-full">
+            <AnalyticsSection />
+          </div>
+        </ParallaxPanel>
+        <ParallaxPanel tone="cream">
+          <div className="w-full">
+            <TestimonialsSection />
+          </div>
+        </ParallaxPanel>
+      </ParallaxStack>
+
+      {/* Skip: standalone Automation */}
+      <SectionBg tone="white">
+        <AutomationSection />
+      </SectionBg>
+
+      {/* Parallax group 3: Integrations + CTA */}
+      <ParallaxStack>
+        <ParallaxPanel tone="ocean">
+          <div className="w-full text-white">
+            <IntegrationsSection />
+          </div>
+        </ParallaxPanel>
+        <ParallaxPanel tone="ink">
+          <div className="w-full">
+            <CTASection />
+          </div>
+        </ParallaxPanel>
+      </ParallaxStack>
+
+      {/* Footer — NO parallax */}
+      <SectionBg tone="white">
+        <FooterSection />
+      </SectionBg>
     </div>
   )
 }

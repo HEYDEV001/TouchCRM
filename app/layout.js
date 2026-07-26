@@ -1,17 +1,14 @@
 import './globals.css'
 import { Providers } from './providers'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
 
 export const metadata = {
-  title: 'WOVE — The Autonomous Revenue Operating System',
-  description: 'AI-Powered Revenue Operating System for D2C & B2B Enterprises.',
+  title: 'WOVE — AI Customer Engagement Suite',
+  description: 'The AI-powered Customer Engagement Suite for D2C brands to acquire customers, recover abandoned carts, automate conversations, and maximize Customer Lifetime Value.',
 }
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en">
       <head>
         <script dangerouslySetInnerHTML={{__html:'window.addEventListener("error",function(e){if(e.error instanceof DOMException&&e.error.name==="DataCloneError"&&e.message&&e.message.includes("PerformanceServerTiming")){e.stopImmediatePropagation();e.preventDefault()}},true);'}} />
       </head>
