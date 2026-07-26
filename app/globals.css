@@ -103,6 +103,11 @@
 
   .hair-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(0,0,0,0.12), transparent); }
 
+  /* Perf: let the browser skip layout/paint on off-screen sections. */
+  .cv-auto { content-visibility: auto; contain-intrinsic-size: 800px 1200px; }
+  .cv-auto-tall { content-visibility: auto; contain-intrinsic-size: 900px 1400px; }
+  .cv-auto-short { content-visibility: auto; contain-intrinsic-size: 900px 700px; }
+
   /* Dark-theme (ocean / ink) overrides so section content reads correctly on coloured bg */
   [data-theme="dark"] .text-gradient-wove {
     background: linear-gradient(180deg, #fff 0%, #fff 40%, rgba(255,255,255,0.6) 100%);

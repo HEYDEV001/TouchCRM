@@ -197,7 +197,7 @@ export default function DotBot({ size: sizeProp = 76 }: DotBotProps) {
         {/* Rotating dot sphere */}
         <DotSphere
           size={size}
-          count={90}
+          count={60}
           color="#000000"
           accentColor={accent}
           rotationSpeed={open ? 0.014 : hover ? 0.011 : 0.006}

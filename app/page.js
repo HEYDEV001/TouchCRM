@@ -2,12 +2,11 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import dynamic from 'next/dynamic'
-import { ArrowRight, PlayCircle, Sparkles, Star } from 'lucide-react'
+import { ArrowRight, PlayCircle, Sparkles } from 'lucide-react'
 import { CustomCursor } from '@/components/wove/cursor'
 import { Aurora } from '@/components/wove/aurora'
 import { FloatingNav } from '@/components/wove/nav'
 import { LimeCTA, GhostCTA, GlassBadge } from '@/components/wove/liquid-glass'
-import { LiveDashboard } from '@/components/wove/live-dashboard'
 import { Reveal } from '@/components/wove/effects'
 const DotBot = dynamic(() => import('@/components/dotbot/DotBot'), { ssr: false })
 import {
@@ -17,8 +16,6 @@ import {
   JourneySection, IntegrationsSection
 } from '@/components/wove/sections'
 import { SectionBg, ParallaxStack, ParallaxPanel } from '@/components/wove/section-fx'
-
-const TRUST = ['Ripple', 'Northwind', 'Kite Labs', 'Orbit', 'Helios', 'Vellum']
 
 const App = () => {
   const heroRef = useRef(null)
@@ -67,24 +64,27 @@ const App = () => {
                 <LimeCTA size="lg" data-cursor="book demo">Book Demo <ArrowRight className="w-4 h-4" /></LimeCTA>
                 <GhostCTA size="lg" data-cursor="try free"><PlayCircle className="w-4 h-4" /> Watch Product Tour</GhostCTA>
               </motion.div>
-
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.9 }} className="mt-12 md:mt-14">
-                <div className="flex items-center gap-2 mb-4 text-[12px] tracking-[0.16em] uppercase text-black/45">
-                  Trusted by fast-growing D2C brands
-                </div>
-                <div className="flex flex-wrap items-center gap-x-7 gap-y-3">
-                  {TRUST.map((t) => <span key={t} className="text-[13px] tracking-[0.12em] uppercase text-black/40 hover:text-black transition-colors">{t}</span>)}
-                </div>
-              </motion.div>
             </motion.div>
 
             <motion.div className="lg:col-span-6 relative" style={{ y: dashY }}>
-              <div className="relative" style={{ perspective: '1400px' }}>
-                <motion.div initial={{ opacity: 0, rotateY: 12, rotateX: 6, y: 40 }} animate={{ opacity: 1, rotateY: -4, rotateX: 2, y: 0 }}
-                  transition={{ duration: 1.4, delay: 0.35, ease: [0.22, 1, 0.36, 1] }} style={{ transformStyle: 'preserve-3d' }}>
-                  <LiveDashboard />
-                </motion.div>
-              </div>
+              <motion.div
+                initial={{ opacity: 0, y: 30, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 1.0, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                className="relative"
+              >
+                <img
+                  src="/hero-visual.jpg"
+                  alt="Wove AI Customer Engagement Suite — Dashboard, Omnichannel and AI Insights"
+                  width={1200}
+                  height={1000}
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                  className="w-full h-auto select-none pointer-events-none"
+                  style={{ filter: 'drop-shadow(0 40px 60px rgba(0,0,0,0.12)) drop-shadow(0 10px 20px rgba(0,0,0,0.05))' }}
+                />
+              </motion.div>
             </motion.div>
           </div>
         </div>

@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
  * When `theme` is provided we add a `data-theme` attribute so descendants can
  * choose contrasting styles (e.g. text-white on dark/blue bgs).
  */
-export function SectionBg({ tone = 'white', className = '', children, ...props }) {
+export function SectionBg({ tone = 'white', className = '', cv = true, children, ...props }) {
   const map = {
     white: 'bg-white text-black',
     cream: 'bg-[#F5EFE1] text-black',
@@ -18,7 +18,7 @@ export function SectionBg({ tone = 'white', className = '', children, ...props }
   }
   const dataTheme = tone === 'ocean' || tone === 'ink' ? 'dark' : 'light'
   return (
-    <div data-theme={dataTheme} className={cn('relative', map[tone] || map.white, className)} {...props}>
+    <div data-theme={dataTheme} className={cn('relative', map[tone] || map.white, cv && 'cv-auto', className)} {...props}>
       {children}
     </div>
   )
